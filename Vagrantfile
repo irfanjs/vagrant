@@ -15,6 +15,7 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
 
+config.vm.network "forwarded_port", guest: 8080, host: 8083, guest_ip: "172.28.128.4"
 
 
 config.vm.define "master" do |master|
@@ -40,6 +41,8 @@ end
 
 
 config.vm.define "worker" do |worker|
+
+worker.vm.network "forwarded_port", guest: 8080, host: 8083, guest_ip: "172.28.128.4"
 
 worker.vm.provider "virtualbox" do |workerconfig|
 workerconfig.memory = "2024"
